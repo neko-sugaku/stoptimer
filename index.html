@@ -27,18 +27,6 @@
     .delay-100 { animation-delay: 0.3s; }
     .delay-200 { animation-delay: 0.6s; }
     
-    .heartbeat {
-      animation: heartbeat 2s ease-in-out infinite both;
-    }
-    
-    @keyframes heartbeat {
-      from { transform: scale(1); }
-      10% { transform: scale(1.02); }
-      17% { transform: scale(0.98); }
-      33% { transform: scale(1.02); }
-      45% { transform: scale(1); }
-    }
-
     .bg-stripes {
       background-image: repeating-linear-gradient(
         45deg,
@@ -54,26 +42,30 @@
 
   <!-- ================= メニュー画面 ================= -->
   <div id="screen-menu" class="absolute inset-0 flex flex-col items-center justify-center p-4">
-    <h1 class="text-5xl md:text-7xl font-black mb-10 text-amber-600 drop-shadow-md text-center leading-tight">
+    <h1 class="text-4xl md:text-7xl font-black mb-6 md:mb-10 text-amber-600 drop-shadow-md text-center leading-tight">
       ピタッとストップ<br />
-      <span class="text-3xl md:text-5xl text-amber-500">〜 目指せ体内時計マスター！ 〜</span>
+      <span class="text-2xl md:text-5xl text-amber-500">〜 目指せ体内時計マスター！ 〜</span>
     </h1>
     
-    <div class="flex flex-col gap-6 w-full max-w-2xl">
-      <button id="btn-mode-0" class="menu-btn p-6 md:p-8 rounded-3xl text-3xl md:text-5xl font-bold transition-all duration-200 border-8 bg-white text-orange-500 border-orange-200 hover:bg-orange-50" data-mode="0">
+    <div class="flex flex-col gap-4 w-full max-w-2xl">
+      <button id="btn-mode-0" class="menu-btn p-5 md:p-6 rounded-3xl text-2xl md:text-4xl font-bold transition-all duration-200 border-8 bg-white text-orange-500 border-orange-200 hover:bg-orange-50" data-mode="0">
         ① 10秒チャレンジ
       </button>
       
-      <button id="btn-mode-1" class="menu-btn p-6 md:p-8 rounded-3xl text-3xl md:text-5xl font-bold transition-all duration-200 border-8 bg-white text-blue-500 border-blue-200 hover:bg-blue-50" data-mode="1">
+      <button id="btn-mode-1" class="menu-btn p-5 md:p-6 rounded-3xl text-2xl md:text-4xl font-bold transition-all duration-200 border-8 bg-white text-blue-500 border-blue-200 hover:bg-blue-50" data-mode="1">
         ② ランダム時間チャレンジ
       </button>
 
-      <button id="btn-mode-2" class="menu-btn p-6 md:p-8 rounded-3xl text-3xl md:text-5xl font-bold transition-all duration-200 border-8 bg-white text-green-500 border-green-200 hover:bg-green-50" data-mode="2">
+      <button id="btn-mode-2" class="menu-btn p-5 md:p-6 rounded-3xl text-2xl md:text-4xl font-bold transition-all duration-200 border-8 bg-white text-purple-500 border-purple-200 hover:bg-purple-50" data-mode="2">
+        ③ 3回チャレンジ
+      </button>
+
+      <button id="btn-mode-3" class="menu-btn p-5 md:p-6 rounded-3xl text-2xl md:text-4xl font-bold transition-all duration-200 border-8 bg-white text-green-500 border-green-200 hover:bg-green-50" data-mode="3">
         🏆 ランキングをみる
       </button>
     </div>
 
-    <div class="mt-12 text-2xl md:text-3xl text-gray-700 font-bold bg-white/70 px-8 py-5 rounded-full shadow-sm text-center">
+    <div class="mt-8 text-xl md:text-2xl text-gray-700 font-bold bg-white/70 px-8 py-4 rounded-full shadow-sm text-center">
       キーボードの <span class="text-amber-600">[↑] [↓]</span> でえらんで <span class="text-amber-600">[Enter]</span> で決定！<br />
       画面をタップしてもあそべるよ！
     </div>
@@ -87,7 +79,7 @@
   </div>
 
   <!-- ================= プレイ（計測中）画面 ================= -->
-  <div id="screen-playing" class="absolute inset-0 hidden flex flex-col items-center justify-center cursor-pointer heartbeat bg-stripes">
+  <div id="screen-playing" class="absolute inset-0 hidden flex flex-col items-center justify-center cursor-pointer bg-stripes">
     <!-- スタート表示用オーバーレイ -->
     <div id="start-overlay" class="absolute inset-0 hidden items-center justify-center bg-green-500/20 z-50">
       <div id="start-text" class="text-8xl md:text-[12rem] font-black text-green-600 drop-shadow-2xl">
@@ -96,12 +88,12 @@
     </div>
 
     <div class="z-10 flex flex-col items-center pointer-events-none">
-      <div class="text-5xl md:text-7xl font-black text-gray-800 mb-12 text-center leading-normal bg-white/60 p-8 rounded-3xl shadow-lg">
-        <span id="playing-target-time" class="text-red-600 text-8xl md:text-[12rem] mx-2 drop-shadow-md">10</span>
+      <div class="text-4xl md:text-7xl font-black text-gray-800 mb-12 text-center leading-normal bg-white/60 p-8 rounded-3xl shadow-lg">
+        <span id="playing-target-time" class="text-red-600 text-7xl md:text-[12rem] mx-2 drop-shadow-md">10</span>
         秒で<br />止めてください！
       </div>
       
-      <div class="text-4xl md:text-6xl font-bold text-blue-600 animate-pulse bg-white/90 px-12 py-8 rounded-full shadow-xl border-4 border-blue-200 text-center">
+      <div class="text-3xl md:text-6xl font-bold text-blue-600 bg-white/90 px-12 py-8 rounded-full shadow-xl border-4 border-blue-200 text-center">
         画面タップ または<br />エンターキー！
       </div>
     </div>
@@ -109,57 +101,70 @@
 
   <!-- ================= 結果画面 ================= -->
   <div id="screen-result" class="absolute inset-0 hidden flex flex-col items-center justify-center cursor-pointer p-4 bg-white/90">
-    <div class="text-3xl md:text-5xl font-bold text-gray-500 mb-6 bg-gray-100 px-6 py-3 rounded-full">
-      目標：<span id="result-target-time">10</span>秒
+    <div id="result-target-box" class="text-2xl md:text-4xl font-bold text-gray-500 mb-4 bg-gray-100 px-6 py-3 rounded-full">
+      目標：<span id="result-target-time">10</span>秒 <span id="result-attempt-label" class="text-purple-600 hidden"></span>
     </div>
     
-    <div id="result-record" class="text-6xl md:text-8xl font-black text-gray-800 mb-8 drop-shadow-lg text-center pop-in">
-      記録: <span id="result-time-val" class="text-7xl md:text-[10rem] text-orange-500">10.000</span> 秒！
+    <div id="result-record" class="text-5xl md:text-7xl font-black text-gray-800 mb-6 drop-shadow-lg text-center pop-in">
+      記録: <span id="result-time-val" class="text-6xl md:text-[8rem] text-orange-500">10.000</span> 秒！
     </div>
 
-    <div id="result-diff-box" class="text-5xl md:text-7xl font-black mb-8 pop-in delay-100 bg-gray-50 px-10 py-6 rounded-3xl shadow-inner border-4 border-gray-200 text-center">
+    <div id="result-diff-box" class="text-4xl md:text-6xl font-black mb-6 pop-in delay-100 bg-gray-50 px-10 py-6 rounded-3xl shadow-inner border-4 border-gray-200 text-center">
       誤差 <span id="result-diff-sign">±</span> <span id="result-diff-val">0.000</span> 秒 <br/>
-      <span id="result-diff-label" class="text-4xl md:text-5xl opacity-80">(ぴったり！！)</span>
+      <span id="result-diff-label" class="text-3xl md:text-4xl opacity-80">(ぴったり！！)</span>
     </div>
 
-    <div id="result-evaluation" class="text-6xl md:text-7xl font-black text-amber-500 mb-12 pop-in delay-200 animate-bounce drop-shadow-md">
+    <!-- モード0, 1用の評価 -->
+    <div id="result-evaluation" class="text-5xl md:text-7xl font-black text-amber-500 mb-10 pop-in delay-200 animate-bounce drop-shadow-md">
       ✨ 神業！！ ✨
     </div>
 
-    <div class="text-2xl md:text-4xl font-bold text-gray-600 animate-pulse bg-amber-100 px-10 py-5 rounded-full border-4 border-amber-300 pointer-events-none">
+    <!-- モード2 (3回チャレンジ) 用の合計誤差表示 -->
+    <div id="result-total-error-box" class="hidden flex-col items-center justify-center mb-10 pop-in delay-200">
+      <div class="text-3xl md:text-4xl font-bold text-gray-600 mb-2">ここまでの合計誤差</div>
+      <div class="text-6xl md:text-8xl font-black text-purple-600 drop-shadow-md bg-purple-100 px-8 py-2 rounded-2xl border-4 border-purple-300">
+        <span id="result-total-error-val"></span> 秒
+      </div>
+    </div>
+
+    <div id="result-nav-text" class="text-xl md:text-3xl font-bold text-gray-600 animate-pulse bg-amber-100 px-8 py-4 rounded-full border-4 border-amber-300 pointer-events-none">
       タップ または エンター でメニューへ
     </div>
   </div>
 
   <!-- ================= ランキング画面 ================= -->
   <div id="screen-ranking" class="absolute inset-0 hidden flex flex-col items-center p-4 bg-amber-50 overflow-y-auto">
-    <h2 class="text-4xl md:text-6xl font-black mt-4 mb-8 text-amber-600 drop-shadow-md text-center">
+    <h2 class="text-4xl md:text-5xl font-black mt-2 mb-6 text-amber-600 drop-shadow-md text-center">
       🏆 ランキング 🏆
     </h2>
     
-    <div class="flex flex-col lg:flex-row gap-6 w-full max-w-7xl pb-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-7xl pb-8">
       <!-- 10秒チャレンジ ランキング -->
-      <div class="flex-1 bg-white rounded-3xl p-6 shadow-xl border-4 border-orange-200">
-        <h3 class="text-3xl md:text-4xl font-bold text-center text-orange-500 mb-6 border-b-4 border-orange-100 pb-2">
-          ① 10秒チャレンジ
+      <div class="bg-white rounded-3xl p-4 shadow-xl border-4 border-orange-200">
+        <h3 class="text-2xl md:text-3xl font-bold text-center text-orange-500 mb-4 border-b-4 border-orange-100 pb-2">
+          ① 10秒
         </h3>
-        <div id="ranking-list-10" class="flex flex-col gap-3">
-          <!-- JSで生成 -->
-        </div>
+        <div id="ranking-list-10" class="flex flex-col gap-2"></div>
       </div>
 
       <!-- ランダム時間チャレンジ ランキング -->
-      <div class="flex-1 bg-white rounded-3xl p-6 shadow-xl border-4 border-blue-200">
-        <h3 class="text-3xl md:text-4xl font-bold text-center text-blue-500 mb-6 border-b-4 border-blue-100 pb-2">
-          ② ランダム時間
+      <div class="bg-white rounded-3xl p-4 shadow-xl border-4 border-blue-200">
+        <h3 class="text-2xl md:text-3xl font-bold text-center text-blue-500 mb-4 border-b-4 border-blue-100 pb-2">
+          ② ランダム
         </h3>
-        <div id="ranking-list-random" class="flex flex-col gap-3">
-          <!-- JSで生成 -->
-        </div>
+        <div id="ranking-list-random" class="flex flex-col gap-2"></div>
+      </div>
+
+      <!-- 3回チャレンジ ランキング -->
+      <div class="bg-white rounded-3xl p-4 shadow-xl border-4 border-purple-200">
+        <h3 class="text-2xl md:text-3xl font-bold text-center text-purple-500 mb-4 border-b-4 border-purple-100 pb-2">
+          ③ 3回合計
+        </h3>
+        <div id="ranking-list-3times" class="flex flex-col gap-2"></div>
       </div>
     </div>
 
-    <button id="btn-ranking-back" class="mt-4 p-4 md:p-6 rounded-full text-2xl md:text-4xl font-bold bg-gray-600 text-white hover:bg-gray-700 transition-all shadow-lg border-4 border-gray-800 mb-8 cursor-pointer z-10">
+    <button id="btn-ranking-back" class="mt-2 p-4 md:p-6 rounded-full text-2xl md:text-4xl font-bold bg-gray-600 text-white hover:bg-gray-700 transition-all shadow-lg border-4 border-gray-800 mb-8 cursor-pointer z-10">
       メニューにもどる
     </button>
   </div>
@@ -168,15 +173,30 @@
   <script>
     // --- 状態管理 ---
     let gameState = 'menu'; // 'menu', 'countdown', 'playing', 'result', 'ranking'
-    let selectedMode = 0;   // 0: 10秒, 1: ランダム, 2: ランキング
+    let selectedMode = 0;   // 0: 10秒, 1: ランダム, 2: 3回チャレンジ, 3: ランキング
     let targetTime = 10;
     let countdownValue = 3;
     let startTime = 0;
     let resultTime = 0;
     let countdownTimerId = null;
 
-    // ランキングデータ
-    let rankings = { mode10: [], modeRandom: [] };
+    // 3回チャレンジ用変数
+    let currentAttempt = 1; 
+    let totalError = 0;
+
+    // ランキングデータ (LocalStorageから読み込み)
+    let rankings = { mode10: [], modeRandom: [], mode3times: [] };
+    const savedRankings = localStorage.getItem('pitattoRankings');
+    if (savedRankings) {
+      try {
+        const parsed = JSON.parse(savedRankings);
+        rankings.mode10 = parsed.mode10 || [];
+        rankings.modeRandom = parsed.modeRandom || [];
+        rankings.mode3times = parsed.mode3times || [];
+      } catch (e) {
+        console.error("ランキングデータの読み込みに失敗しました", e);
+      }
+    }
 
     // --- DOM要素取得 ---
     const screens = {
@@ -190,14 +210,15 @@
     const btnMode0 = document.getElementById('btn-mode-0');
     const btnMode1 = document.getElementById('btn-mode-1');
     const btnMode2 = document.getElementById('btn-mode-2');
-    const menuBtns = [btnMode0, btnMode1, btnMode2];
+    const btnMode3 = document.getElementById('btn-mode-3');
+    const menuBtns = [btnMode0, btnMode1, btnMode2, btnMode3];
 
     // --- 画面切り替え関数 ---
     function showScreen(screenName) {
       Object.keys(screens).forEach(key => {
         if (key === screenName) {
           screens[key].classList.remove('hidden');
-          if(key !== 'menu') screens[key].classList.add('flex'); // hiddenを外してflexを当てる
+          screens[key].classList.add('flex');
         } else {
           screens[key].classList.add('hidden');
           screens[key].classList.remove('flex');
@@ -209,17 +230,19 @@
     // --- メニューUI更新 ---
     function updateMenuUI() {
       menuBtns.forEach((btn, index) => {
-        // 基本クラスにリセット
-        btn.className = 'menu-btn p-6 md:p-8 rounded-3xl text-3xl md:text-5xl font-bold transition-all duration-200 border-8 cursor-pointer';
+        btn.className = 'menu-btn p-5 md:p-6 rounded-3xl text-2xl md:text-4xl font-bold transition-all duration-200 border-8 cursor-pointer';
         
-        if (index === 0) { // 10秒
+        if (index === 0) {
           if (selectedMode === 0) btn.classList.add('bg-orange-400', 'text-white', 'border-orange-600', 'scale-105', 'shadow-2xl');
           else btn.classList.add('bg-white', 'text-orange-500', 'border-orange-200', 'hover:bg-orange-50');
-        } else if (index === 1) { // ランダム
+        } else if (index === 1) {
           if (selectedMode === 1) btn.classList.add('bg-blue-400', 'text-white', 'border-blue-600', 'scale-105', 'shadow-2xl');
           else btn.classList.add('bg-white', 'text-blue-500', 'border-blue-200', 'hover:bg-blue-50');
-        } else if (index === 2) { // ランキング
-          if (selectedMode === 2) btn.classList.add('bg-green-400', 'text-white', 'border-green-600', 'scale-105', 'shadow-2xl');
+        } else if (index === 2) {
+          if (selectedMode === 2) btn.classList.add('bg-purple-400', 'text-white', 'border-purple-600', 'scale-105', 'shadow-2xl');
+          else btn.classList.add('bg-white', 'text-purple-500', 'border-purple-200', 'hover:bg-purple-50');
+        } else if (index === 3) {
+          if (selectedMode === 3) btn.classList.add('bg-green-400', 'text-white', 'border-green-600', 'scale-105', 'shadow-2xl');
           else btn.classList.add('bg-white', 'text-green-500', 'border-green-200', 'hover:bg-green-50');
         }
       });
@@ -234,7 +257,7 @@
         }
       });
       btn.addEventListener('click', () => {
-        if (index === 2) {
+        if (index === 3) {
           renderRanking();
           showScreen('ranking');
         } else {
@@ -245,19 +268,24 @@
 
     // --- ゲーム進行処理 ---
     function startGame(mode) {
+      selectedMode = mode;
+      
       if (mode === 0) {
         targetTime = 10;
-      } else {
-        targetTime = Math.floor(Math.random() * 16) + 5; // 5〜20
+      } else if (mode === 1) {
+        targetTime = Math.floor(Math.random() * 16) + 5;
+      } else if (mode === 2) {
+        targetTime = 10;
+        currentAttempt = 1;
+        totalError = 0;
       }
-      selectedMode = mode;
-      countdownValue = 3;
-      document.getElementById('playing-target-time').innerText = targetTime;
       
       startCountdown();
     }
 
     function startCountdown() {
+      countdownValue = 3;
+      document.getElementById('playing-target-time').innerText = targetTime;
       showScreen('countdown');
       updateCountdownUI();
 
@@ -275,9 +303,8 @@
     function updateCountdownUI() {
       const el = document.getElementById('countdown-text');
       el.innerText = countdownValue;
-      // アニメーションを再トリガーするためのリセット処理
       el.classList.remove('pop-in');
-      void el.offsetWidth; // 強制リフロー
+      void el.offsetWidth;
       el.classList.add('pop-in');
     }
 
@@ -285,7 +312,6 @@
       showScreen('playing');
       startTime = Date.now();
 
-      // 「スタート！」の表示処理
       const overlay = document.getElementById('start-overlay');
       const text = document.getElementById('start-text');
       overlay.classList.remove('hidden');
@@ -307,16 +333,30 @@
       const diff = resultTime - targetTime;
       const absDiff = Math.abs(diff);
 
-      // ランキング記録
-      const newRecord = { target: targetTime, result: resultTime, diff: diff, absDiff: absDiff };
+      // モード別の処理と記録保存
       if (selectedMode === 0) {
+        const newRecord = { target: targetTime, result: resultTime, diff: diff, absDiff: absDiff };
         rankings.mode10.push(newRecord);
         rankings.mode10.sort((a, b) => a.absDiff - b.absDiff);
         if (rankings.mode10.length > 10) rankings.mode10.length = 10;
-      } else {
+        localStorage.setItem('pitattoRankings', JSON.stringify(rankings));
+      } else if (selectedMode === 1) {
+        const newRecord = { target: targetTime, result: resultTime, diff: diff, absDiff: absDiff };
         rankings.modeRandom.push(newRecord);
         rankings.modeRandom.sort((a, b) => a.absDiff - b.absDiff);
         if (rankings.modeRandom.length > 10) rankings.modeRandom.length = 10;
+        localStorage.setItem('pitattoRankings', JSON.stringify(rankings));
+      } else if (selectedMode === 2) {
+        // 3回チャレンジは合計誤差を加算
+        totalError += absDiff;
+        if (currentAttempt === 3) {
+          // 3回終わったらランキングに保存
+          const newRecord = { totalDiff: totalError };
+          rankings.mode3times.push(newRecord);
+          rankings.mode3times.sort((a, b) => a.totalDiff - b.totalDiff);
+          if (rankings.mode3times.length > 10) rankings.mode3times.length = 10;
+          localStorage.setItem('pitattoRankings', JSON.stringify(rankings));
+        }
       }
 
       showResultUI(diff, absDiff);
@@ -326,6 +366,14 @@
     function showResultUI(diff, absDiff) {
       document.getElementById('result-target-time').innerText = targetTime;
       document.getElementById('result-time-val').innerText = resultTime.toFixed(3);
+
+      const attemptLabel = document.getElementById('result-attempt-label');
+      if (selectedMode === 2) {
+        attemptLabel.innerText = `(${currentAttempt}回目)`;
+        attemptLabel.classList.remove('hidden');
+      } else {
+        attemptLabel.classList.add('hidden');
+      }
 
       let diffSign = '';
       let diffColorClass = '';
@@ -344,23 +392,60 @@
       document.getElementById('result-diff-label').innerText = `(${diffLabel})`;
 
       const diffBox = document.getElementById('result-diff-box');
-      diffBox.className = `text-5xl md:text-7xl font-black ${diffColorClass} mb-8 pop-in delay-100 bg-gray-50 px-10 py-6 rounded-3xl shadow-inner border-4 border-gray-200 text-center`;
+      diffBox.className = `text-4xl md:text-6xl font-black ${diffColorClass} mb-6 pop-in delay-100 bg-gray-50 px-10 py-6 rounded-3xl shadow-inner border-4 border-gray-200 text-center`;
 
-      let evaluation = '';
-      if (absDiff < 0.1) evaluation = '✨ 神業！！ ✨';
-      else if (absDiff < 0.5) evaluation = '🌟 すばらしい！ 🌟';
-      else if (absDiff < 1.0) evaluation = '👍 いいかんじ！ 👍';
-      else evaluation = '💪 もうすこし！ 💪';
+      const evalBox = document.getElementById('result-evaluation');
+      const totalBox = document.getElementById('result-total-error-box');
+      const navText = document.getElementById('result-nav-text');
 
-      document.getElementById('result-evaluation').innerText = evaluation;
+      if (selectedMode === 2) {
+        // 3回チャレンジ用UI
+        evalBox.classList.add('hidden');
+        totalBox.classList.remove('hidden');
+        totalBox.classList.add('flex');
+        document.getElementById('result-total-error-val').innerText = totalError.toFixed(3);
+
+        if (currentAttempt < 3) {
+          navText.innerText = `タップ または エンター で ${currentAttempt + 1}回目 へ`;
+        } else {
+          navText.innerText = 'タップ または エンター で メニュー へ';
+        }
+      } else {
+        // 通常モード用UI
+        evalBox.classList.remove('hidden');
+        totalBox.classList.add('hidden');
+        totalBox.classList.remove('flex');
+        navText.innerText = 'タップ または エンター で メニュー へ';
+
+        let evaluation = '';
+        if (absDiff < 0.1) evaluation = '✨ 神業！！ ✨';
+        else if (absDiff < 0.5) evaluation = '🌟 すばらしい！ 🌟';
+        else if (absDiff < 1.0) evaluation = '👍 いいかんじ！ 👍';
+        else evaluation = '💪 もうすこし！ 💪';
+        evalBox.innerText = evaluation;
+      }
 
       // 結果画面のアニメーション再トリガー
-      ['result-record', 'result-diff-box', 'result-evaluation'].forEach(id => {
+      ['result-record', 'result-diff-box', 'result-evaluation', 'result-total-error-box'].forEach(id => {
         const el = document.getElementById(id);
-        el.style.animation = 'none';
-        void el.offsetWidth;
-        el.style.animation = null;
+        if (el) {
+          el.style.animation = 'none';
+          void el.offsetWidth;
+          el.style.animation = null;
+        }
       });
+    }
+
+    // 次へ進む処理（結果画面）
+    function handleResultNext() {
+      if (selectedMode === 2 && currentAttempt < 3) {
+        currentAttempt++;
+        startCountdown();
+      } else {
+        selectedMode = 0;
+        updateMenuUI();
+        showScreen('menu');
+      }
     }
 
     // --- ランキング描画 ---
@@ -372,34 +457,49 @@
 
       const list10 = document.getElementById('ranking-list-10');
       const listRandom = document.getElementById('ranking-list-random');
+      const list3times = document.getElementById('ranking-list-3times');
+
+      // 共通の描画関数
+      const renderEmpty = () => '<p class="text-xl text-center text-gray-400 py-6 font-bold">まだ きろく がないよ</p>';
 
       // 10秒
-      if (rankings.mode10.length === 0) {
-        list10.innerHTML = '<p class="text-2xl text-center text-gray-400 py-10 font-bold">まだ きろく がないよ</p>';
-      } else {
+      if (rankings.mode10.length === 0) list10.innerHTML = renderEmpty();
+      else {
         list10.innerHTML = rankings.mode10.map((record, index) => `
-          <div class="flex flex-col xl:flex-row xl:items-center justify-between text-2xl md:text-3xl font-bold bg-orange-50 p-3 rounded-xl gap-2 xl:gap-0">
-            <div class="flex items-center gap-4">
-              <span class="w-12 text-center ${index < 3 ? 'text-orange-500 text-4xl' : 'text-gray-500'}">${index + 1}位</span>
+          <div class="flex flex-row items-center justify-between text-lg md:text-xl font-bold bg-orange-50 p-2 rounded-xl">
+            <div class="flex items-center gap-2">
+              <span class="w-8 text-center ${index < 3 ? 'text-orange-500 text-2xl' : 'text-gray-500'}">${index + 1}位</span>
               <span class="text-gray-800">${record.result.toFixed(3)}秒</span>
             </div>
-            <span class="text-xl md:text-2xl text-gray-500">(誤差 ${getDiffText(record.diff)}秒)</span>
+            <span class="text-sm md:text-base text-gray-500">(誤差 ${getDiffText(record.diff)}秒)</span>
           </div>
         `).join('');
       }
 
       // ランダム
-      if (rankings.modeRandom.length === 0) {
-        listRandom.innerHTML = '<p class="text-2xl text-center text-gray-400 py-10 font-bold">まだ きろく がないよ</p>';
-      } else {
+      if (rankings.modeRandom.length === 0) listRandom.innerHTML = renderEmpty();
+      else {
         listRandom.innerHTML = rankings.modeRandom.map((record, index) => `
-          <div class="flex flex-col 2xl:flex-row 2xl:items-center justify-between text-xl md:text-2xl font-bold bg-blue-50 p-3 rounded-xl gap-2 2xl:gap-0">
-            <div class="flex items-center gap-2 md:gap-4">
-              <span class="w-10 text-center ${index < 3 ? 'text-blue-500 text-3xl md:text-4xl' : 'text-gray-500 text-2xl md:text-3xl'}">${index + 1}位</span>
-              <span class="text-gray-600 bg-white px-2 py-1 rounded-md text-lg md:text-xl">目標${record.target}秒</span>
-              <span class="text-gray-800 text-2xl md:text-3xl">${record.result.toFixed(3)}秒</span>
+          <div class="flex flex-row items-center justify-between text-lg md:text-xl font-bold bg-blue-50 p-2 rounded-xl">
+            <div class="flex items-center gap-2">
+              <span class="w-8 text-center ${index < 3 ? 'text-blue-500 text-2xl' : 'text-gray-500'}">${index + 1}位</span>
+              <span class="text-gray-600 bg-white px-1 rounded text-sm">目${record.target}秒</span>
+              <span class="text-gray-800">${record.result.toFixed(3)}秒</span>
             </div>
-            <span class="text-lg md:text-xl text-gray-500">(誤差 ${getDiffText(record.diff)}秒)</span>
+            <span class="text-sm md:text-base text-gray-500">(誤差 ${getDiffText(record.diff)}秒)</span>
+          </div>
+        `).join('');
+      }
+
+      // 3回チャレンジ
+      if (rankings.mode3times.length === 0) list3times.innerHTML = renderEmpty();
+      else {
+        list3times.innerHTML = rankings.mode3times.map((record, index) => `
+          <div class="flex flex-row items-center justify-between text-lg md:text-xl font-bold bg-purple-50 p-2 rounded-xl">
+            <div class="flex items-center gap-2">
+              <span class="w-8 text-center ${index < 3 ? 'text-purple-500 text-2xl' : 'text-gray-500'}">${index + 1}位</span>
+            </div>
+            <span class="text-gray-800">合計誤差 <span class="text-purple-600 text-2xl">${record.totalDiff.toFixed(3)}</span> 秒</span>
           </div>
         `).join('');
       }
@@ -415,13 +515,13 @@
 
       if (gameState === 'menu') {
         if (e.key === 'ArrowUp') {
-          selectedMode = selectedMode > 0 ? selectedMode - 1 : 2;
+          selectedMode = selectedMode > 0 ? selectedMode - 1 : 3;
           updateMenuUI();
         } else if (e.key === 'ArrowDown') {
-          selectedMode = selectedMode < 2 ? selectedMode + 1 : 0;
+          selectedMode = selectedMode < 3 ? selectedMode + 1 : 0;
           updateMenuUI();
         } else if (e.key === 'Enter' || e.key === ' ') {
-          if (selectedMode === 2) {
+          if (selectedMode === 3) {
             renderRanking();
             showScreen('ranking');
           } else {
@@ -434,7 +534,7 @@
         }
       } else if (gameState === 'result') {
         if (e.key === 'Enter' || e.key === ' ') {
-          showScreen('menu');
+          handleResultNext();
         }
       } else if (gameState === 'ranking') {
         if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
@@ -449,7 +549,7 @@
     screens.playing.addEventListener('click', stopTimer);
     
     screens.result.addEventListener('click', () => {
-      if (gameState === 'result') showScreen('menu');
+      if (gameState === 'result') handleResultNext();
     });
 
     document.getElementById('btn-ranking-back').addEventListener('click', () => {
